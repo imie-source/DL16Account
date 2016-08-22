@@ -26,9 +26,9 @@ abstract class Account{
         echo "<hr/>";
         echo "Nom du compte : $this->number <br/>";
         echo "Nom du propriétaire : " . $this->owner->getName() . "<br/>";
-        echo "Solde : $this->balance €<br/>";
-        echo "Montant du débit maximal autorisé : " . $this->getMaxDebit() . " €<br/>";
-        echo "Débit autorisé : " . $this->getPossibleDebit() . " €<br/>";
+        echo "Solde : " . Bank::euroToFranc($this->balance) . "<br/>";
+        echo "Montant du débit maximal autorisé : " . Bank::euroToFranc($this->getMaxDebit()) . "<br/>";
+        echo "Débit autorisé : " . Bank::euroToFranc($this->getPossibleDebit()) . "<br/>";
     }
 
     public function getPossibleDebit(){
@@ -43,9 +43,13 @@ abstract class Account{
         return $this->maxDebit;
     }
 
-    abstract public function credit($amount);
+    public function credit($amount){
+        $this->setBalance($amount + $this->getBalance());
+    }
 
-    abstract public function debit($amount);
+    public function debit($amount){
+        return $this->setBalance($this->getBalance() - $amount);
+    }
 
     public function isOverDraft(){
         return $this->balance < 0;

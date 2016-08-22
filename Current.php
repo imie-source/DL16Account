@@ -32,11 +32,12 @@ class Current extends Account{
     }
 
     protected function setBalance($balance){
+        $success = false;
         if($balance > -$this->maxOverDraft){
             $this->balance = $balance;
-            return true;
+            $success = true;            
         }
-        return false;
+        return $success;
     }
 
     public function getMaxOverDraft(){
@@ -49,7 +50,7 @@ class Current extends Account{
     
     public function show(){
         parent::show();
-        echo "Découvert Max : $this->maxOverDraft € <br/>";
+        echo "Découvert Max : " . Bank::euroToFranc($this->maxOverDraft) . "<br/>";
     }
     
 

@@ -16,12 +16,4 @@ class Booklet extends Account{
         self::$nbCurrent++;
     }
 
-    public function credit($amount){
-        $this->setBalance($amount + $this->getBalance());
-    }
-
-    public function debit($amount){
-        return $this->setBalance($this->getBalance() - $amount);
-    }
-
 }

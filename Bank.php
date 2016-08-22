@@ -11,6 +11,10 @@ class Bank{
         $this->name = $name;
     }
 
+    public static function euroToFranc($value){
+        return "$value € ( " . $value * 6.56 . " Francs )";
+    }
+
     public static function getTheBank(){
         if(!isset(self::$instance)){ // check if Bank instance exists
             self::$instance = new Bank("BNP Paribas");
