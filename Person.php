@@ -2,13 +2,26 @@
 require_once("Current.php");
 
 abstract class Person{
-    private $currentAccounts = [];
+    private $currentAccount;
+    private $name;
 
-    public function getAccounts(){
-        return $this->currentAccounts;
+    public function __construct($name){
+        $this->setName($name);
     }
 
-    public function addAccount(Current $c){
-        $this->currentAccounts[] = $c;
+    public function getName(){
+        return $this->name;
+    }
+
+    public function setName($name){
+        $this->name = $name;
+    }
+
+    public function getAccount(){
+        return $this->currentAccount;
+    }
+
+    public function setAccount(Current $c){
+        $this->currentAccount = $c;
     }
 }
